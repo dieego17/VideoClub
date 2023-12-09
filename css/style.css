@@ -1,0 +1,86 @@
+@font-face {
+    font-family: fnmedium;
+    src: url(../assets/fonts/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: fnlight;
+    src: url(../assets/fonts/Poppins-Light.ttf);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(135deg, #7F492D, #29ebfd);
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+.container {
+    width: 100%;
+    width: 1080px; 
+    margin: 0 auto;
+}
+.main{
+    margin: 0 auto;
+}
+.section__form{
+    position: relative;
+    background-color: #241929a0;
+    margin: 90px 0px;
+    position: relative;
+}
+.article__form{
+    position: relative;
+}
+.img__log{
+    position: absolute;
+    width: 150px;
+    border-radius: 100px;
+    top: -60px;
+    left: 300px;
+}
+.form__section{
+    padding: 90px 0px 0px;
+}
+.container__input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form__input{
+    padding: 11px 20px;
+    outline: none;
+    font-family: fnlight;
+    color: #7F7A66;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    border: 1px solid #7F7A66;
+}
+.form__label{
+    background-color: #ffffff;
+    padding: 7px 20px;
+    font-size: 1.4rem;
+    color: #ffffff;
+    background-color: #7F7A66;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.container__button{
+    margin: 50px 0px;
+}
+.btn__inicio{
+    color: #ffffff;
+    background-color: #7F7A66;
+    font-family: fnlight;
+}
+.btn__inicio:hover{
+    color: #ffffff;
+    background-color: #625e4f;
+    font-family: fnlight;
+}
+
+
