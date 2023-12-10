@@ -1,4 +1,4 @@
-# Videoclub App - PHP & MySQL
+# Videoclub App
 
 Este proyecto es una aplicación de un videoclub desarrollada en PHP y MySQL que permite a los usuarios explorar el catálogo de películas y enviar incidencias a los administradores a través de correo electrónico.
 
