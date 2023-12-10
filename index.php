@@ -26,7 +26,7 @@
                         <img class="img__log" src="./assets/images/logo.jpeg" alt="">
                     </article>
                     <!-- INICIO FORM -->
-                    <form class="form__section row g-3 needs-validation" method="POST" action="">
+                    <form class="form__section row g-3 needs-validation" method="POST" action="./recurses/php_files/log_in.php">
                         <div class="col-md-12 container__input">
                           <label class="form__label"><i class="fa-solid fa-user"></i></label>
                           <input type="text" class="form__input" name="usuario" placeholder="Usuario">
@@ -35,6 +35,19 @@
                           <label class="form__label"><i class="fa-solid fa-lock"></i></label>
                           <input type="password" class="form__input" name="contraseña" placeholder="Contraseña">
                         </div>
+                        <?php
+                            // Verifica si la clave "error" está definida en $_GET
+                            if (isset($_GET["error"])) {
+                                $error = htmlspecialchars($_GET["error"]);
+
+                                // Verifica el valor de $error y muestra el mensaje correspondiente
+                                if ($error == 1) {
+                                    echo "<p class='register__error'>Error: complete todos los campos<p>";
+                                } elseif ($error == 2) {
+                                    echo "<p class='register__error'>Error: usuario ya registrado<p>";
+                                } 
+                            }
+                        ?>
                         <div class="col-12 container__button">
                           <button class="btn btn__inicio" type="submit">Iniciar Sesión</button>
                         </div>

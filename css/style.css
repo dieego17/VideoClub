@@ -83,4 +83,7 @@ body {
     font-family: fnlight;
 }
 
+.register__error{
+    color: red;
+}
 
