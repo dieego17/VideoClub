@@ -47,12 +47,10 @@
         * Destructor de la clase
         */
         public function __destruct() {
-            echo "El usuario \"".$this->getUsername()."\" ha sido destruído";
+
         }
 
-
     }
-    
     
 ?>
 

@@ -19,11 +19,21 @@
         }
     }
 
-    function consultaLogin($username, $password) {
-        
+    function consultaLogin($username) {
+        $bd = conexionBD();
+        if ($bd != null) {
+            try {
+                $sql = "select id, username, password, rol from usuarios where username='$username'";
+                $select = $bd->query($sql);
+                return $select;
+            } catch (Exception $exc) {
+                header('Location: ../../index.php?error=2');
+            }
+        }
     }
 
     
-    
+
 ?>
+
 

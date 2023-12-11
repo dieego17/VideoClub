@@ -62,7 +62,9 @@
         public function setCartel($cartel): void {
             $this->cartel = $cartel;
         }
-
-
+        
+        public function __destruct() {
+            
+        }
     }
 ?>

@@ -26,16 +26,17 @@
                         <img class="img__log" src="./assets/images/logo.jpeg" alt="">
                     </article>
                     <!-- INICIO FORM -->
-                    <form class="form__section row g-3 needs-validation" method="POST" action="./recurses/php_files/log_in.php">
+                    <form class="form__section row g-3 needs-validation" method="POST" action="./pages/inicio.php">
                         <div class="col-md-12 container__input">
                           <label class="form__label"><i class="fa-solid fa-user"></i></label>
-                          <input type="text" class="form__input" name="usuario" placeholder="Usuario">
+                          <input type="text" class="form__input" name="username" placeholder="Usuario">
                         </div>
                         <div class="col-md-12 container__input">
                           <label class="form__label"><i class="fa-solid fa-lock"></i></label>
-                          <input type="password" class="form__input" name="contraseña" placeholder="Contraseña">
+                          <input type="password" class="form__input" name="password" placeholder="Contraseña">
                         </div>
                         <?php
+                        
                             // Verifica si la clave "error" está definida en $_GET
                             if (isset($_GET["error"])) {
                                 $error = htmlspecialchars($_GET["error"]);
