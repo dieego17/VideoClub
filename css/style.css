@@ -30,21 +30,15 @@ body {
     position: relative;
     background-color: #241929a0;
     margin: 90px 0px;
-    position: relative;
 }
 .article__form{
-    position: relative;
+    margin: 10px 0px 0px;
 }
 .img__log{
-    position: absolute;
     width: 150px;
     border-radius: 100px;
-    top: -60px;
-    left: 300px;
 }
-.form__section{
-    padding: 90px 0px 0px;
-}
+
 .container__input{
     display: flex;
     justify-content: center;
@@ -85,5 +79,6 @@ body {
 
 .register__error{
     color: red;
+    font-family: fnlight;
 }
 

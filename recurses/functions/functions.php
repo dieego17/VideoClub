@@ -19,19 +19,11 @@
         }
     }
 
-    function consultaLogin($dni) {
-        $bd = conexionBD();
-        if ($bd != null) {
-            try {
-                $sql = "select nombre, apellidos, contraseña from jugadores where dni='$dni'";
-                $select = $bd->query($sql);
-                return $select;
-            } catch (Exception $exc) {
-                header('Location: ../../pages/log_in.php?error=1');
-            }
-        }
+    function consultaLogin($username, $password) {
+        
     }
 
+    
     
 ?>
 

@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/header.css">
         <!-- link para favicons -->
-    <script src="https://kit.fontawesome.com/3ed6284a33.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/3ed6284a33.js" crossorigin="anonymous"></script>
     </head>
     <!-- FIN HEAD -->
 
@@ -44,7 +44,7 @@
                                 if ($error == 1) {
                                     echo "<p class='register__error'>Error: complete todos los campos<p>";
                                 } elseif ($error == 2) {
-                                    echo "<p class='register__error'>Error: usuario ya registrado<p>";
+                                    echo "<p class='register__error'>Error: usuario o contraseña incorrecta<p>";
                                 } 
                             }
                         ?>
