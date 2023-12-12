@@ -1,3 +1,11 @@
+<?php
+    include './lib/functions/functions.php';
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    setcookie("guardarNombre", "",time()-1);
+    
+?>
 <!DOCTYPE html>
 
 <html lang="es">

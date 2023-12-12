@@ -1,6 +1,13 @@
 <?php
     //para incluir las funciones que haya en functions.php
     include '../lib/functions/functions.php';
+    
+    //variable para guardar la fecha actual y saber cuando fue la ultima visita del usuario
+    $fecha = date("d/m/Y | H:i:s");
+    
+    $name;
+    $hashed_password;
+    
     //inicio de la sesion
     session_start();
     //comprobamos que no existe la sesion user
@@ -12,21 +19,19 @@
             if ($username != "" && $password != "") {
                 //ciframos la contraseña
                 $pass_hash = hash("sha256", $password);
-                echo $pass_hash;
                 //nos conectamos a la base de datos
                 $bd = conexionBD();
                 //guardamos la sentencia sql para luego utilizarla
                 $users = consultaLogin($username);
                 if (gettype($users) == null) {
                     header('Location: ../index.php?error=2');
+                    exit();
                 } else {
                     $user=$users->rowCount();
                 }
 
                 //Comprueba que la consulta nos ha devuelto solo una 1 fila que es la que indica que no hay ningun usuario repetido.
                 if ($user == 1) {
-                    $name;
-                    $hashed_password;
                     //Sacamos del usuario su contraseña cifrada
                     foreach ($users as $u) {
                         $name = $u['username'];
@@ -35,25 +40,33 @@
                     //verificamos la contraseña introducida en el login con la cifrada con la funcion la verifica
                     if ($pass_hash == $hashed_password) {
 
-                        //Echo "login correcto";
                         //Crea la cookie para almacenar el nombre del usuario que expira en 20 dias
                         setcookie("guardarNombre", $name, time() + 20 * 24 * 60 * 60);
+                        //Creamos la cookie par almacenar la fecha de la ultima visita del usuario que expira en 20 dias
+                        setcookie("fecha", $fecha, time() + 20 * 24 * 60 * 60);
+                        
                         //crea la sesion user donde almacenamos el username
                         $_SESSION['user'] = $username;
                     }
                     //si la contraseña que nos ha pasado no coincide con la de la base de datos lo redericcionamos al login
                     else {
                         header('Location: ../index.php?error=2');
+                        exit();
                     }
                 }
                 //si la consulta nos devuelve más o menos lineas que no sea 1 lo redericcionamos al login
                 else {
                     header('Location: ../index.php?error=2');
+                    exit();
                 }
             //si los campos estan vacios lo redericcionamos al login
             }else {
                 header('Location:../index.php?error=1');
+                exit();
             }
+        }else {
+            header('Location:../index.php?error=2');
+            exit();
         }
     //si la sesion user existe guardamos el nombre del usuario en la cookie
     }else {
@@ -105,7 +118,7 @@
                         </ul>
                         <div class="contenedor__icon">
                             <form class="d-flex" role="search">
-                                <button class="btn__icon btn" type="submit">CERRAR SESIÓN</button>
+                                <a class="btn__icon btn" href="../pages/cerrarSesion.php" target="target">CERRAR SESIÓN</a>
                             </form>
                         </div>
                     </div>
@@ -117,7 +130,14 @@
         <div class="div__inicio">
         </div>
         <div class="container">
-            <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name)?></h1>
+            <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
+            <?php
+                if(isset($_COOKIE['fecha'])){
+                    echo "Tu última visita fue ".$_COOKIE['fecha'];
+                }else{
+                    echo "Esta es tu primera visita";
+                }
+            ?>
         </div>
     </body>
     <!-- FIN BODY -->
