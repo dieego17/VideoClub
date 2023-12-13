@@ -1,9 +1,9 @@
 <?php
     include '../pages/inicioSesion.php';
 
-    // Verifica si la sesión está activa y si el usuario es normal
+    // verifica si la sesión está activa y si el usuario es administrador
     if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 1)) {
-        // Si el usuario no es normal, cierra la sesión y redirige a la página de inicio de sesión
+        // si el usuario no es administrador, cierra la sesión y redirige a la página de inicio de sesión
         session_unset();
         session_destroy();
         header("Location: ../index.php?error=3");
@@ -55,15 +55,82 @@
             </nav>
         </header>
         <!-- FIN DEL HEADER -->
-        <div class="container div__admin">
-            <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
-            <?php
-                if(isset($_COOKIE['fecha'])){
-                    echo "Tu última visita fue ".$_COOKIE['fecha'];
-                }else{
-                    echo "Esta es tu primera visita";
-                }
-            ?>
+        <div class="contenedor div__admin">
+            <div class="container__text">
+                <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
+                <?php
+                    if(isset($_COOKIE['fecha'])){
+                        echo "Tu última visita fue ".$_COOKIE['fecha'];
+                    }else{
+                        echo "Esta es tu primera visita";
+                    }
+                ?>
+            </div>
+            <!-- INICIO SECTION -->
+            <div class="reservas__section">
+                <!-- INICIO TABLA -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Género</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Cartel</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $peliculas = consultaReservas();
+                            if ($peliculas->rowCount() > 0) {
+                                $fila = 1;
+                                foreach ($peliculas as $pelicula) {
+                                    echo "<tr>";
+                                    echo "<th scope='row'>" . $pelicula['id'] . "</th>";
+                                    echo "<td>" . $pelicula['titulo'] . "</td>";
+                                    echo "<td>" . $pelicula['genero'] . "</td>";
+                                    echo "<td>" . $pelicula['pais'] . "</td>";
+                                    echo "<td>" . $pelicula['anyo'] . "</td>";
+                                    echo "<td>" . $pelicula['cartel'] . "</td>";
+                                    echo "<td><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                                                <i class='fa-solid fa-x eliminar'></i>
+                                            </button>
+                                            <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                                                <div class='modal-dialog'>
+                                                    <div class='modal-content'>
+                                                        <div class='modal-header'>
+                                                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Eliminar Reserva</h1>
+                                                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                                        </div>
+                                                        <div class='modal-body'>¿Esta seguro que quiere elimanar la reserva seleccionada? Si esta seguro pulse confirmar, si no
+                                                            lo esta pulse cancelar.
+                                                        </div>
+                                                        <div class='modal-footer'>
+                                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                                                <i class='fa-solid fa-pen eliminar'></i>
+                                            </button></td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr>";
+                                echo "<th scope='row' colspan='4'>No hay ninguna pelicula</th>";
+
+                                echo "</tr>";
+                            }
+                        ?>
+
+                </table>
+                <!-- FIN TABLA -->
+            </div>
+            <!-- FIN SECTION -->
         </div>
     </body>
     <!-- FIN BODY -->

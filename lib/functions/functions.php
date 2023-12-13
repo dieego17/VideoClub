@@ -32,6 +32,27 @@
         }
     }
     
+    /**
+     * Funcion que nos devuelve una sentencia sql, en este caso un select
+     * 
+     * @param string $dni dni del usuario que queremos ver de la base de datos
+     * @return string nos devuelve la sentencia sql
+     */
+    function consultaReservas() {
+        $bd = conexionBD();
+        if ($bd != null) {
+            try {
+                $prepare = $bd->prepare("select id, titulo, genero, pais, anyo, cartel from peliculas");
+                $prepare->execute(array());
+                //$select = $bd->query($sql);
+                return $prepare;
+            } catch (Exception $exc) {
+
+            }
+        } else {
+            header("Location:../index.php");
+        }
+    }
     
 
 ?>

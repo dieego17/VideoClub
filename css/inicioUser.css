@@ -1,7 +1,3 @@
-.div__admin{
-    padding: 180px 0px 0px;
-}
-
 .contenedor{
     width: 1080px;
     margin: 0 auto;
@@ -11,11 +7,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 0px;
 }
 
 .reservas__section{
     margin: 50px 0px;
 }
-.eliminar{
-    color: #ffffff;
-}
+

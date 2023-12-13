@@ -16,7 +16,7 @@
     <!-- INICIO HEAD -->
     <head>
         <meta charset="UTF-8">
-        <title>INICIO - VIDEOCLUB RUBIO</title>
+        <title>PELICULAS - VIDEOCLUB RUBIO</title>
         <link rel="shortcut icon" href="../assets/images/logo.jpeg" type="image/x-icon">
         <!-- Link to Bootstrap CSS library hosted on a CDN with integrity and crossorigin attributes -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -45,10 +45,10 @@
                     <div class="contenedor__ul collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav d-flex me-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+                                <a class="nav-link active" aria-current="page" href="../pages/inicioUser.php">INICIO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../pages/peliculasUser.php">PELICULAS</a>
+                                <a class="nav-link active" aria-current="page" href="#">PELICULAS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">CONTACTO</a>
@@ -78,7 +78,48 @@
                     }
                 ?>
             </div>
+            <!-- INICIO SECTION -->
+            <div class="reservas__section">
+                <!-- INICIO TABLA -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Género</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Cartel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $peliculas = consultaReservas();
+                            if ($peliculas->rowCount() > 0) {
+                                $fila = 1;
+                                foreach ($peliculas as $pelicula) {
+                                    echo "<tr>";
+                                    echo "<th scope='row'>" . $pelicula['id'] . "</th>";
+                                    echo "<td>" . $pelicula['titulo'] . "</td>";
+                                    echo "<td>" . $pelicula['genero'] . "</td>";
+                                    echo "<td>" . $pelicula['pais'] . "</td>";
+                                    echo "<td>" . $pelicula['anyo'] . "</td>";
+                                    echo "<td>" . $pelicula['cartel'] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr>";
+                                echo "<th scope='row' colspan='4'>No hay ninguna pelicula</th>";
+                                echo "</tr>";
+                            }
+                        ?>
+
+                </table>
+                <!-- FIN TABLA -->
+            </div>
+            <!-- FIN SECTION -->
         </div>
     </body>
     <!-- FIN BODY -->
 </html>
+
