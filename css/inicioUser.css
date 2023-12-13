@@ -13,4 +13,9 @@
 .reservas__section{
     margin: 50px 0px;
 }
-
+.table{
+    text-align: center;
+}
+.th__table{
+    color: #7F7A66;
+}

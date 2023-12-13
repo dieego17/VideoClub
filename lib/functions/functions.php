@@ -19,6 +19,11 @@
         }
     }
 
+    /**
+     * 
+     * @param type $username
+     * @return type
+     */
     function consultaLogin($username) {
         $bd = conexionBD();
         if ($bd != null) {
@@ -33,16 +38,18 @@
     }
     
     /**
-     * Funcion que nos devuelve una sentencia sql, en este caso un select
      * 
-     * @param string $dni dni del usuario que queremos ver de la base de datos
-     * @return string nos devuelve la sentencia sql
+     * @return type
      */
-    function consultaReservas() {
+    function consultaPeliculas() {
         $bd = conexionBD();
         if ($bd != null) {
             try {
-                $prepare = $bd->prepare("select id, titulo, genero, pais, anyo, cartel from peliculas");
+                $prepare = $bd->prepare("SELECT p.id, p.anyo, p.cartel, p.genero, p.pais, p.titulo, "
+                        . "a.id, a.nombre, a.apellidos, a.fotografia "
+                        . "FROM peliculas p "
+                        . "JOIN actuan c ON p.id = c.idPelicula "
+                        . "JOIN actores a ON c.idPelicula = a.id;");
                 $prepare->execute(array());
                 //$select = $bd->query($sql);
                 return $prepare;
@@ -55,6 +62,30 @@
     }
     
 
+    /**
+     * 
+     * @param type $titulo
+     * @param type $genero
+     * @param type $pais
+     * @param type $anyo
+     * @param type $cartel
+     */
+    function deletePelicula($titulo, $genero, $pais, $anyo, $cartel) {
+        $bd = conexionBD();
+        if ($bd != null) {
+            try {
+                $sql = "delete from peliculas where titulo='$titulo' and genero='$genero' and pais='$pais' and anyo='$anyo' and cartel='$cartel'";
+                $delete = $bd->query($sql);
+                if ($delete) {
+                    header('Location: ../pages/inicioAdmin.php');
+                }
+            } catch (Exception $exc) {
+
+            }
+        }else {
+            header("Location:../pages/cerrarSesion.php");
+        }
+    }
 ?>
 
 

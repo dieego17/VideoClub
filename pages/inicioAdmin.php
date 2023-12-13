@@ -35,7 +35,7 @@
         <header class="header">
             <nav class="header__nav navbar navbar-expand-lg">
                 <div class="container contenedor__nav">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="../pages/inicioAdmin.php">
                         <img class="header__img" src="../assets/images/titulo.png" alt="">
                         <p class="header__link">VideoClub Rubio</p>
                     </a>
@@ -66,6 +66,9 @@
                     }
                 ?>
             </div>
+            <div class="container__button">
+                <button type="button" class="btn btn-success">Añadir Nueva Pelicula</button>
+            </div>
             <!-- INICIO SECTION -->
             <div class="reservas__section">
                 <!-- INICIO TABLA -->
@@ -78,12 +81,15 @@
                             <th scope="col">País</th>
                             <th scope="col">Año</th>
                             <th scope="col">Cartel</th>
+                            <th scope="col">Nombre Actor</th>
+                            <th scope="col">Apellido Actor</th>
+                            <th scope="col">Fotografía</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $peliculas = consultaReservas();
+                            $peliculas = consultaPeliculas();
                             if ($peliculas->rowCount() > 0) {
                                 $fila = 1;
                                 foreach ($peliculas as $pelicula) {
@@ -93,7 +99,10 @@
                                     echo "<td>" . $pelicula['genero'] . "</td>";
                                     echo "<td>" . $pelicula['pais'] . "</td>";
                                     echo "<td>" . $pelicula['anyo'] . "</td>";
-                                    echo "<td>" . $pelicula['cartel'] . "</td>";
+                                    echo "<td>" . $pelicula['nombre'] . "</td>";
+                                    echo "<td>" . $pelicula['apellidos'] . "</td>";
+                                    echo "<td>" . $pelicula['fotografia'] . "</td>";
+                                    echo "<td> <img width='100px' src='../assets/images/" . $pelicula['cartel'] . "'/> </td>";
                                     echo "<td><button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'>
                                                 <i class='fa-solid fa-x eliminar'></i>
                                             </button>
@@ -101,21 +110,21 @@
                                                 <div class='modal-dialog'>
                                                     <div class='modal-content'>
                                                         <div class='modal-header'>
-                                                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Eliminar Reserva</h1>
+                                                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Eliminar Pelicula</h1>
                                                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                         </div>
-                                                        <div class='modal-body'>¿Esta seguro que quiere elimanar la reserva seleccionada? Si esta seguro pulse confirmar, si no
+                                                        <div class='modal-body'>¿Esta seguro que quiere elimanar la pelicula seleccionada? Si esta seguro pulse confirmar, si no
                                                             lo esta pulse cancelar.
                                                         </div>
                                                         <div class='modal-footer'>
                                                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                       
+                                                        <a href='../pages/eliminarPelicula.php?titulo=" . $pelicula['titulo'] . "&genero=" . $pelicula['genero'] . "&pais=" . $pelicula['pais'] . "&anyo=" . $pelicula['anyo'] . "&cartel=" . $pelicula['cartel'] . "' class='btn btn-primary'>Confirmar</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                                                <i class='fa-solid fa-pen eliminar'></i>
+                                            <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                                                        <i class='fa-solid fa-pen eliminar'></i>
                                             </button></td>";
                                     echo "</tr>";
                                 }

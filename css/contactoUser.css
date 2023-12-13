@@ -1,0 +1,12 @@
+.form__contact{
+    margin: 20px 0px;
+    color: #7F7A66;
+}
+.form-control{
+    color: #7F7A66;
+    border: 1px solid #7F7A66;
+}
+.form-control::placeholder{
+    color: #7F7A66;
+}
+

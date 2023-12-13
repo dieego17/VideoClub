@@ -23,6 +23,7 @@
         <!-- LINK CSS -->
         <link rel="stylesheet" href="../css/inicio.css">
         <link rel="stylesheet" href="../css/inicioUser.css">
+        <link rel="stylesheet" href="../css/contactoUser.css">
         <link rel="stylesheet" href="../css/header.css">
         <!-- link para favicons -->
     <script src="https://kit.fontawesome.com/3ed6284a33.js" crossorigin="anonymous"></script>
@@ -78,6 +79,20 @@
                     }
                 ?>
             </div>
+            <form class="row g-3 needs-validation form__contact" novalidate>
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label">Correo</label>
+                  <input type="email" class="form-control" id="validationCustom01" placeholder="Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label for="validationCustom05" class="form-label">Incidencia</label>
+                  <textarea class="form-control" id="id" name="name" rows="5" cols="10"></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-success" type="submit">Enviar</button>
+                </div>
+              </form>
         </div>
     </body>
     <!-- FIN BODY -->

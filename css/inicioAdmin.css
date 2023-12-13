@@ -19,3 +19,12 @@
 .eliminar{
     color: #ffffff;
 }
+.table{
+    text-align: center;
+}
+.container__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+}
