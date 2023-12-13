@@ -1,5 +1,14 @@
 <?php
     include '../pages/inicioSesion.php';
+    
+    // Verifica si la sesión está activa y si el usuario es normal
+    if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 0)) {
+        // Si el usuario no es normal, cierra la sesión y redirige a la página de inicio de sesión
+        session_unset();
+        session_destroy();
+        header("Location: ../index.php?error=3");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>

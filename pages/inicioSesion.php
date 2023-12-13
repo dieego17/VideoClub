@@ -48,6 +48,9 @@
                         
                         //crea la sesion user donde almacenamos el username
                         $_SESSION['user'] = $username;
+                        // almacena el rol del usuario en la sesión
+                        $_SESSION['rol'] = $rol;
+                        
                         if($rol === 1){
                             header('Location: ../pages/inicioAdmin.php');
                         }else if($rol === 0){

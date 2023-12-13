@@ -1,5 +1,14 @@
 <?php
     include '../pages/inicioSesion.php';
+
+    // Verifica si la sesión está activa y si el usuario es normal
+    if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 1)) {
+        // Si el usuario no es normal, cierra la sesión y redirige a la página de inicio de sesión
+        session_unset();
+        session_destroy();
+        header("Location: ../index.php?error=3");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +43,8 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="contenedor__ul collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav d-flex me-auto mb-2 mb-lg-0">
+                        </ul>
                         <div class="contenedor__icon">
                             <form class="d-flex" role="search">
                                 <a class="btn__icon btn" href="../pages/cerrarSesion.php" target="target">CERRAR SESIÓN</a>
@@ -43,6 +54,7 @@
                 </div>
             </nav>
         </header>
+        <!-- FIN DEL HEADER -->
         <div class="container div__admin">
             <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
             <?php
