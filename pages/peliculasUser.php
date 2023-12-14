@@ -1,5 +1,6 @@
 <?php
     include '../pages/inicioSesion.php';
+
     
     // Verifica si la sesión está activa y si el usuario es normal
     if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 0)) {
@@ -84,36 +85,43 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Género</th>
-                            <th scope="col">País</th>
-                            <th scope="col">Año</th>
-                            <th scope="col">Cartel</th>
-                            <th scope="col">Nombre Actor</th>
-                            <th scope="col">Apellido Actor</th>
-                            <th scope="col">Fotografía</th>
-                            <th scope="col">Acciones</th>
+                            <td class="th__table" scope="col">Titulo</td>
+                            <td class="th__table" scope="col">Género</td>
+                            <td class="th__table" scope="col">País</td>
+                            <td class="th__table" scope="col">Año</td>
+                            <td class="th__table" scope="col">Cartel</td>
+                            <td class="th__table" scope="col">Nombre Actor</td>
+                            <td class="th__table" scope="col">Apellido Actor</td>
+                            <td class="th__table" scope="col">Fotografía</td>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             $peliculas = consultaPeliculas();
-                            if ($peliculas->rowCount() > 0) {
-                                $fila = 1;
+                            if (count($peliculas) > 0) {
                                 foreach ($peliculas as $pelicula) {
-                                    echo "<tr>";
-                                    echo "<th scope='row'>" . $pelicula['id'] . "</th>";
-                                    echo "<td>" . $pelicula['titulo'] . "</td>";
-                                    echo "<td>" . $pelicula['genero'] . "</td>";
-                                    echo "<td>" . $pelicula['pais'] . "</td>";
-                                    echo "<td>" . $pelicula['anyo'] . "</td>";
-                                    echo "<td>" . $pelicula['nombre'] . "</td>";
-                                    echo "<td>" . $pelicula['apellidos'] . "</td>";
-                                    echo "<td>" . $pelicula['fotografia'] . "</td>";
-                                    echo "<td> <img width='100px' src='../assets/images/" . $pelicula['cartel'] . "'/> </td>";
-                                    echo "</tr>";
+                                    $actores = consultaActores($pelicula);  
+                                    
+                                    if(count($actores)>0){
+                                        foreach($actores as $actor){
+                                        echo "<tr>";
+                                        echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
+                                        echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
+                                        echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
+                                        echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
+                                        echo "<td> <img width='100px' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
+                                        echo "<td class='th__info'>" . $actor->getNombre() . "</td>";
+                                        echo "<td class='th__info'>" . $actor->getApellidos() . "</td>";
+                                        echo "<td><img width='100px' src='../assets/images/" . $actor->getFotografia() . "'/> </td>";
+                                        echo "</tr>";
+                                        }
+                                    }else{
+                                        echo "<tr>";
+                                        echo "<th scope='row' colspan='4'>No hay ningun actor</th>";
+                                        echo "</tr>";
+                                    }
                                 }
+                                
                             } else {
                                 echo "<tr>";
                                 echo "<th scope='row' colspan='4'>No hay ninguna pelicula</th>";

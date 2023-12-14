@@ -140,3 +140,12 @@
 .principal__title{
     color: #7F7A66;
 }
+.th__table{
+    font-size: 1.2rem;
+    color: #7F7A66;
+    font-family: fnmedium;
+}
+.th__info{
+    font-family: fnlight;
+    color: #7F7A66;
+}

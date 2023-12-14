@@ -1,4 +1,11 @@
 <?php
+    //clase Pelicula
+    include '../lib/model/pelicula.php';
+    //clase Actor
+    include '../lib/model/actor.php';
+    //clase Usuario
+    include '../lib/model/usuario.php';
+    
 
     /**
      * Funcion para conectarnos a la base de datos
@@ -39,9 +46,10 @@
     
     /**
      * 
+     * Función para sacar cada pelicula
      * @return type
      */
-    function consultaPeliculas() {
+    /*function consultaPeliculas() {
         $bd = conexionBD();
         if ($bd != null) {
             try {
@@ -59,8 +67,67 @@
         } else {
             header("Location:../index.php");
         }
+    }*/
+    function consultaPeliculas() {
+        $bd = conexionBD();
+        $arrayPeliculas = array();
+
+        if ($bd != null) {
+            try {
+                $prepares = $bd->prepare("SELECT * FROM peliculas;");
+                $prepares->execute();
+
+                // Obtener los resultados como un array asociativo
+                $resultados = $prepares->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($resultados as $resultado) {
+                    $pelicula = new Pelicula($resultado["id"], $resultado["titulo"], $resultado["genero"], $resultado["pais"], $resultado["anyo"], $resultado["cartel"]);
+                    array_push($arrayPeliculas, $pelicula);
+                }
+            } catch (Exception $exc) {
+                // Manejo de errores
+            }
+        } else {
+            header("Location: ../index.php");
+            exit(); // Asegúrate de terminar la ejecución después de la redirección
+        }
+        return $arrayPeliculas;
     }
+
     
+    
+    /**
+     * Función para sacar los actores 
+     */
+    function consultaActores($pelicula) {
+        $bd = conexionBD();
+        $arrayActores = array();
+
+        if ($bd != null) {
+            try {
+                $idPelicula = $pelicula->getId();
+                $prepares = $bd->prepare("SELECT * FROM actores WHERE id = ?");
+                $prepares->execute(array($idPelicula));
+
+                // Obtener los resultados como un array asociativo
+                $resultados = $prepares->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($resultados as $resultado) {
+                    $actor = new Actor($resultado["id"], $resultado["nombre"], $resultado["apellidos"], $resultado["fotografia"]);
+                    array_push($arrayActores, $actor);
+                }
+            } catch (Exception $exc) {
+                // Manejo de errores
+            }
+        } else {
+            header("Location:../index.php");
+            exit(); // Asegúrate de terminar la ejecución después de la redirección
+        }
+
+        return $arrayActores;
+    }
+
+
 
     /**
      * 
