@@ -1,4 +1,11 @@
 <?php
+    //clase Pelicula
+    include '../lib/model/pelicula.php';
+    //clase Actor
+    include '../lib/model/actor.php';
+    //clase Usuario
+    include '../lib/model/usuario.php';
+    
     include '../pages/inicioSesion.php';
 
     // verifica si la sesión está activa y si el usuario es administrador

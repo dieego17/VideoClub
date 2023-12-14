@@ -1,6 +1,13 @@
 <?php
+    //clase Pelicula
+    include '../lib/model/pelicula.php';
+    //clase Actor
+    include '../lib/model/actor.php';
+    //clase Usuario
+    include '../lib/model/usuario.php';
+    
     include '../pages/inicioSesion.php';
-
+    
     
     // Verifica si la sesión está activa y si el usuario es normal
     if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 0)) {

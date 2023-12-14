@@ -1,10 +1,4 @@
 <?php
-    //clase Pelicula
-    include '../lib/model/pelicula.php';
-    //clase Actor
-    include '../lib/model/actor.php';
-    //clase Usuario
-    include '../lib/model/usuario.php';
     
 
     /**
@@ -49,25 +43,6 @@
      * Función para sacar cada pelicula
      * @return type
      */
-    /*function consultaPeliculas() {
-        $bd = conexionBD();
-        if ($bd != null) {
-            try {
-                $prepare = $bd->prepare("SELECT p.id, p.anyo, p.cartel, p.genero, p.pais, p.titulo, "
-                        . "a.id, a.nombre, a.apellidos, a.fotografia "
-                        . "FROM peliculas p "
-                        . "JOIN actuan c ON p.id = c.idPelicula "
-                        . "JOIN actores a ON c.idPelicula = a.id;");
-                $prepare->execute(array());
-                //$select = $bd->query($sql);
-                return $prepare;
-            } catch (Exception $exc) {
-
-            }
-        } else {
-            header("Location:../index.php");
-        }
-    }*/
     function consultaPeliculas() {
         $bd = conexionBD();
         $arrayPeliculas = array();
