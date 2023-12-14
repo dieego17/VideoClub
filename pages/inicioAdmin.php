@@ -66,8 +66,8 @@
             <div class="container__text">
                 <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
                 <?php
-                    if(isset($_COOKIE['fecha'])){
-                        echo "Tu última visita fue ".$_COOKIE['fecha'];
+                    if(isset($_COOKIE['ultimaVez'])){
+                        echo "Tu última visita fue ".$_COOKIE['ultimaVez'];
                     }else{
                         echo "Esta es tu primera visita";
                     }

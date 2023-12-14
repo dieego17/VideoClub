@@ -44,7 +44,7 @@
                         //Crea la cookie para almacenar el nombre del usuario que expira en 20 dias
                         setcookie("guardarNombre", $name, time() + 20 * 24 * 60 * 60);
                         //Creamos la cookie par almacenar la fecha de la ultima visita del usuario que expira en 20 dias
-                        setcookie("fecha", $fecha, time() + 20 * 24 * 60 * 60);
+                        setcookie("ultimaVez", $fecha, time() + 20 * 24 * 60 * 60);
                         
                         //crea la sesion user donde almacenamos el username
                         $_SESSION['user'] = $username;

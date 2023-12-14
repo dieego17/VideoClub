@@ -37,11 +37,14 @@
             }
         }
     }
+
+
     
+
     /**
-     * 
      * Función para sacar cada pelicula
-     * @return type
+     * 
+     * @return array
      */
     function consultaPeliculas() {
         $bd = conexionBD();
@@ -64,15 +67,17 @@
             }
         } else {
             header("Location: ../index.php");
-            exit(); // Asegúrate de terminar la ejecución después de la redirección
+            exit(); 
         }
         return $arrayPeliculas;
     }
 
     
-    
     /**
      * Función para sacar los actores 
+     * 
+     * @param type $pelicula
+     * @return array
      */
     function consultaActores($pelicula) {
         $bd = conexionBD();
@@ -96,7 +101,7 @@
             }
         } else {
             header("Location:../index.php");
-            exit(); // Asegúrate de terminar la ejecución después de la redirección
+            exit();
         }
 
         return $arrayActores;

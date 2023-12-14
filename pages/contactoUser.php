@@ -72,22 +72,25 @@
             <div class="container__text">
                 <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
                 <?php
-                    if(isset($_COOKIE['fecha'])){
-                        echo "Tu última visita fue ".$_COOKIE['fecha'];
+                    if(isset($_COOKIE['ultimaVez'])){
+                        echo "Tu última visita fue ".$_COOKIE['ultimaVez'];
                     }else{
                         echo "Esta es tu primera visita";
                     }
                 ?>
             </div>
-            <form class="row g-3 needs-validation form__contact" novalidate>
+            <form class="row g-3 needs-validation form__contact" action="../pages/envioCorreo.php" method="POST">
                 <div class="col-md-12">
                   <label for="validationCustom01" class="form-label">Correo</label>
-                  <input type="email" class="form-control" id="validationCustom01" placeholder="Email" required>
+                  <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="Email">
                 </div>
-
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label">Asunto</label>
+                  <input type="text" name="asunto" class="form-control" id="validationCustom01" placeholder="Asunto">
+                </div>
                 <div class="col-md-12">
                   <label for="validationCustom05" class="form-label">Incidencia</label>
-                  <textarea class="form-control" id="id" name="name" rows="5" cols="10"></textarea>
+                  <textarea class="form-control" id="id" name="mensaje" rows="5" cols="10" placeholder="Mensaje"></textarea>
                 </div>
                 <div class="col-12">
                   <button class="btn btn-success" type="submit">Enviar</button>
