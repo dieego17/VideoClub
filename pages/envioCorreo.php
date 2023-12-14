@@ -8,25 +8,31 @@
     require '../phpmailer/src/SMTP.php';
 
 
-    if (isset($_POST["send"])) {
-       $mail= new PHPMailer(true);
+    if (isset($_POST["asunto"]) && isset($_POST["mensaje"])) {
+        
+        $asunto = $_POST["asunto"];
+        $mensaje = $_POST["mensaje"];
+        $mail= new PHPMailer(true);
 
-       $mail->isSMTP();
-       $mail->Host = 'smtp.gmail.com';
-       $mail->SMTPAuth = true;
-       $mail->Username= 'aqui ponemos el email donde ponemos los pasos';
-       $mail->Password='la contraseña de las aplicaciones generada en el correo';
-       $mail->SMTPSecure='ssl';
-       $mail->Port=465;
-       
-       $mail->setFrom('aqui ponemos el email donde ponemos los pasos');
-       $mail->addAddress($_POST["email"]);
-       $mail->isHTML(true);
-       $mail->Subject = $_POST["asunto"];
-       $mail->Body= $_POST["message"];
-       $mail->send();
-       
-       echo "<script>alert('correo enviado');document.location.href= 'index.php';</script>";
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username= 'videoclubrubio@gmail.com';
+        $mail->Password='wmwejdhdatvkuyze';
+        $mail->SMTPSecure='ssl';
+        $mail->Port=465;
+
+        $mail->setFrom('videoclubrubio@gmail.com');
+        $mail->addAddress('videoclubrubio@gmail.com');
+        $mail->isHTML(true);
+        $mail->Subject = $asunto;
+        $mail->Body= $mensaje;
+        $mail->send();
+        
+        echo "<script>alert('Correo Enviado');document.location.href= '../pages/contactoUser.php';</script>";
+        
+    }else{
+        header("Location: ../pages/contactoUser.php?error=1");
     }
 
 ?>

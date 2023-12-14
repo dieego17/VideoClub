@@ -9,4 +9,7 @@
 .form-control::placeholder{
     color: #7F7A66;
 }
-
+.register__error{
+    color: red;
+    font-family: fnlight;
+}

@@ -16,7 +16,7 @@
     <!-- INICIO HEAD -->
     <head>
         <meta charset="UTF-8">
-        <title>INICIO - VIDEOCLUB RUBIO</title>
+        <title>CONTACTO - VIDEOCLUB RUBIO</title>
         <link rel="shortcut icon" href="../assets/images/logo.jpeg" type="image/x-icon">
         <!-- Link to Bootstrap CSS library hosted on a CDN with integrity and crossorigin attributes -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -81,10 +81,6 @@
             </div>
             <form class="row g-3 needs-validation form__contact" action="../pages/envioCorreo.php" method="POST">
                 <div class="col-md-12">
-                  <label for="validationCustom01" class="form-label">Correo</label>
-                  <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="Email">
-                </div>
-                <div class="col-md-12">
                   <label for="validationCustom01" class="form-label">Asunto</label>
                   <input type="text" name="asunto" class="form-control" id="validationCustom01" placeholder="Asunto">
                 </div>
@@ -92,6 +88,16 @@
                   <label for="validationCustom05" class="form-label">Incidencia</label>
                   <textarea class="form-control" id="id" name="mensaje" rows="5" cols="10" placeholder="Mensaje"></textarea>
                 </div>
+                <?php
+                    // Verifica si la clave "error" está definida en $_GET
+                    if (isset($_GET["error"])) {
+                        $error = htmlspecialchars($_GET["error"]);
+                        // Verifica el valor de $error y muestra el mensaje correspondiente
+                        if ($error == 1) {
+                            echo "<p class='register__error'>Error: complete todos los campos<p>";
+                        }
+                    }
+                ?>
                 <div class="col-12">
                   <button class="btn btn-success" type="submit">Enviar</button>
                 </div>
