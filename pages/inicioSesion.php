@@ -42,9 +42,7 @@
                 if ($user == 1) {
                     //Sacamos del usuario su contraseña cifrada
                     foreach ($users as $u) {
-                        
                         $usuarioNuevo = new Usuario($u['id'], $u['username'], $u['password'], $u['rol']);
-                        
                     }
                     
                     $name = $usuarioNuevo->getUsername();

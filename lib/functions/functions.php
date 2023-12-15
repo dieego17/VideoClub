@@ -20,6 +20,7 @@
     }
 
     /**
+     * Función para comprobar el usuario
      * 
      * @param type $username
      * @return type
@@ -33,6 +34,7 @@
                 return $select;
             } catch (Exception $exc) {
                 header('Location: ../../index.php?error=2');
+                exit();
             }
         }
     }
@@ -41,7 +43,7 @@
     
 
     /**
-     * Función para sacar cada pelicula
+     * Función para mostrar cada pelicula
      * 
      * @return array
      */
@@ -73,7 +75,7 @@
 
     
     /**
-     * Función para sacar los actores 
+     * Función para mostrar los actores 
      * 
      * @param type $pelicula
      * @return array
@@ -109,27 +111,30 @@
 
 
     /**
+     * Función para borrar una película
      * 
-     * @param type $titulo
-     * @param type $genero
-     * @param type $pais
-     * @param type $anyo
-     * @param type $cartel
+     * @param type $id
      */
-    function deletePelicula($titulo, $genero, $pais, $anyo, $cartel) {
+    function deletePelicula($id) {
         $bd = conexionBD();
         if ($bd != null) {
             try {
-                $sql = "delete from peliculas where titulo='$titulo' and genero='$genero' and pais='$pais' and anyo='$anyo' and cartel='$cartel'";
-                $delete = $bd->query($sql);
-                if ($delete) {
-                    header('Location: ../pages/inicioAdmin.php');
-                }
+                
+                $sql = "DELETE FROM peliculas WHERE id=?";
+                $deletePelicula = $bd->prepare($sql);
+                $deletePelicula -> execute([$id]);
+                
+
+                header('Location: ../pages/inicioAdmin.php');
+                exit();
+
             } catch (Exception $exc) {
-                // Manejo de errores
+                header("Location:../pages/cerrarSesion.php");
+                exit();
             }
         }else {
             header("Location:../pages/cerrarSesion.php");
+            exit();
         }
     }
 ?>

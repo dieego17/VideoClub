@@ -30,6 +30,7 @@ body {
     position: relative;
     background-color: #241929a0;
     margin: 90px 0px;
+    border-radius: 5px;
 }
 .article__form{
     margin: 10px 0px 0px;
