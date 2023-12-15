@@ -1,11 +1,5 @@
 <?php
-    //clase Pelicula
-    include '../lib/model/pelicula.php';
-    //clase Actor
-    include '../lib/model/actor.php';
-    //clase Usuario
-    include '../lib/model/usuario.php';
-    
+   
     include '../pages/inicioSesion.php';
 
     // verifica si la sesión está activa y si el usuario es administrador
@@ -89,11 +83,8 @@
                             <td class="th__table" scope="col">País</td>
                             <td class="th__table" scope="col">Año</td>
                             <td class="th__table" scope="col">Cartel</td>
-                            <td class="th__table" scope="col">Actor/Actriz</td>
-                            <td class="th__table" scope="col">Actor/Actriz</td>
-                            <td class="th__table" scope="col">Actor/Actriz</td>
-                            <td class="th__table" scope="col">Actor/Actriz</td>
-                            <td class="th__table" scope="col">Actor/Actriz</td>
+                            <td class="th__table" scope="col">Reparto</td>
+
                         </tr>
                     </thead>
                     <tbody>

@@ -1,4 +1,5 @@
 <?php
+
     include '../pages/inicioSesion.php';
     
     // Verifica si la sesión está activa y si el usuario es normal

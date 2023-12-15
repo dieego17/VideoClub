@@ -1,12 +1,7 @@
 <?php
-    //clase Pelicula
-    include './lib/model/pelicula.php';
-    //clase Actor
-    include './lib/model/actor.php';
-    //clase Usuario
-    include './lib/model/usuario.php';
     
     include './lib/functions/functions.php';
+    
     session_start();
     $_SESSION = array();
     session_destroy();

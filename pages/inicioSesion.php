@@ -1,6 +1,14 @@
 <?php
+
     //para incluir las funciones que haya en functions.php
     include '../lib/functions/functions.php';
+    
+    //clase Pelicula
+    include '../lib/model/pelicula.php';
+    //clase Actor
+    include '../lib/model/actor.php';
+    //clase Usuario
+    include '../lib/model/usuario.php';
     
     //variable para guardar la fecha actual y saber cuando fue la ultima visita del usuario
     $fecha = date("d/m/Y | H:i:s");
@@ -34,10 +42,15 @@
                 if ($user == 1) {
                     //Sacamos del usuario su contraseña cifrada
                     foreach ($users as $u) {
-                        $name = $u['username'];
-                        $hashed_password = $u['password'];
-                        $rol = $u['rol'];
+                        
+                        $usuarioNuevo = new Usuario($u['id'], $u['username'], $u['password'], $u['rol']);
+                        
                     }
+                    
+                    $name = $usuarioNuevo->getUsername();
+                    $hashed_password = $usuarioNuevo->getPassword();
+                    $rol = $usuarioNuevo->getRol();
+                    
                     //verificamos la contraseña introducida en el login con la cifrada con la funcion la verifica
                     if ($pass_hash == $hashed_password) {
 
