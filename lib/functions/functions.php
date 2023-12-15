@@ -48,19 +48,16 @@
      */
     function consultaPeliculas() {
         $bd = conexionBD();
-
         $arrayPeliculas = array();
 
         if ($bd != null) {
             try {
-                $prepares = $bd->prepare("SELECT p.id, p.titulo, p.anyo, p.genero, p.pais, p.cartel, a.nombre, a.id, a.apellidos, a.fotografia
-                FROM peliculas p JOIN actuan c ON p.id = c.idPelicula 
-                JOIN actores a ON c.idActor = a.id;");
+                $prepares = $bd->prepare("SELECT * FROM peliculas;");
                 $prepares->execute();
 
                 // Obtener los resultados como un array asociativo
                 $resultados = $prepares->fetchAll(PDO::FETCH_ASSOC);
- 
+
                 foreach ($resultados as $resultado) {
                     $pelicula = new Pelicula($resultado["id"], $resultado["titulo"], $resultado["genero"], $resultado["pais"], $resultado["anyo"], $resultado["cartel"]);
                     array_push($arrayPeliculas, $pelicula);
@@ -89,7 +86,7 @@
         if ($bd != null) {
             try {
                 $idPelicula = $pelicula->getId();
-                $prepares = $bd->prepare("SELECT * FROM actores WHERE id = ?");
+                $prepares = $bd->prepare("SELECT * FROM actores where id IN (SELECT idActor FROM actuan WHERE idPelicula=?);");
                 $prepares->execute(array($idPelicula));
 
                 // Obtener los resultados como un array asociativo
@@ -130,7 +127,7 @@
                     header('Location: ../pages/inicioAdmin.php');
                 }
             } catch (Exception $exc) {
-
+                // Manejo de errores
             }
         }else {
             header("Location:../pages/cerrarSesion.php");

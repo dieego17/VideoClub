@@ -141,7 +141,7 @@
     color: #7F7A66;
 }
 .th__table{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #7F7A66;
     font-family: fnmedium;
 }
@@ -149,3 +149,14 @@
     font-family: fnlight;
     color: #7F7A66;
 }
+
+.img__act{
+    width: 100px;
+    height: 150px;
+}
+.eliminar__icon{
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+

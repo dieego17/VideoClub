@@ -92,14 +92,16 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td class="th__table" scope="col">Titulo</td>
+                            <td class="th__table" scope="col">Título</td>
                             <td class="th__table" scope="col">Género</td>
                             <td class="th__table" scope="col">País</td>
                             <td class="th__table" scope="col">Año</td>
                             <td class="th__table" scope="col">Cartel</td>
-                            <td class="th__table" scope="col">Nombre Actor</td>
-                            <td class="th__table" scope="col">Apellido Actor</td>
-                            <td class="th__table" scope="col">Fotografía</td>
+                            <td class="th__table th__table--foto" scope="col">Actor/Actriz</td>
+                            <td class="th__table th__table--foto" scope="col">Actor/Actriz</td>
+                            <td class="th__table th__table--foto" scope="col">Actor/Actriz</td>
+                            <td class="th__table th__table--foto" scope="col">Actor/Actriz</td>
+                            <td class="th__table th__table--foto" scope="col">Actor/Actriz</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,34 +109,33 @@
                             $peliculas = consultaPeliculas();
                             if (count($peliculas) > 0) {
                                 foreach ($peliculas as $pelicula) {
-                                    $actores = consultaActores($pelicula);  
-                                    
-                                    if(count($actores)>0){
-                                        foreach($actores as $actor){
-                                        echo "<tr>";
-                                        echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
-                                        echo "<td> <img width='100px' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
-                                        echo "<td class='th__info'>" . $actor->getNombre() . "</td>";
-                                        echo "<td class='th__info'>" . $actor->getApellidos() . "</td>";
-                                        echo "<td><img width='100px' src='../assets/images/" . $actor->getFotografia() . "'/> </td>";
-                                        echo "</tr>";
+                                    echo "<tr>";
+                                    echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
+                                    echo "<td> <img class='img__act' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
+
+                                    $actores = consultaActores($pelicula);
+                                    if (count($actores) > 0) {
+                                        foreach ($actores as $actor) {
+                                            echo "<td class='th__info'><img class='img__act' src='../assets/images/". $actor->getFotografia() ."'/><br><br>".
+                                                    $actor->getNombre() . " " . $actor->getApellidos() . "</td>";
                                         }
-                                    }else{
-                                        echo "<tr>";
-                                        echo "<th scope='row' colspan='4'>No hay ningun actor</th>";
-                                        echo "</tr>";
+                                        
+                                    } else {
+                                        echo "<td class='th__info'>No hay actores</td>";
                                     }
+
+                                    echo "</tr>";
+                                    
                                 }
-                                
                             } else {
                                 echo "<tr>";
-                                echo "<th scope='row' colspan='4'>No hay ninguna pelicula</th>";
+                                echo "<th scope='row' colspan='8'>No hay ninguna película</th>";
                                 echo "</tr>";
                             }
-                        ?>
+                            ?>
 
                 </table>
                 <!-- FIN TABLA -->

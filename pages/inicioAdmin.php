@@ -82,17 +82,18 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="th__table" scope="col">Id Película</th>
-                            <th class="th__table" scope="col">Titulo</th>
-                            <th class="th__table" scope="col">Género</th>
-                            <th class="th__table" scope="col">País</th>
-                            <th class="th__table" scope="col">Año</th>
-                            <th class="th__table" scope="col">Cartel</th>
-                            <th class="th__table" scope="col">Id Actor</th>
-                            <th class="th__table" scope="col">Nombre Actor</th>
-                            <th class="th__table" scope="col">Apellido Actor</th>
-                            <th class="th__table" scope="col">Fotografía</th>
-                            <th class="th__table" scope="col">Acciones</th>
+                            <td class="th__table" scope="col">Acciones</td>
+                            <td class="th__table" scope="col">Id Película</td>
+                            <td class="th__table" scope="col">Título</td>
+                            <td class="th__table" scope="col">Género</td>
+                            <td class="th__table" scope="col">País</td>
+                            <td class="th__table" scope="col">Año</td>
+                            <td class="th__table" scope="col">Cartel</td>
+                            <td class="th__table" scope="col">Actor/Actriz</td>
+                            <td class="th__table" scope="col">Actor/Actriz</td>
+                            <td class="th__table" scope="col">Actor/Actriz</td>
+                            <td class="th__table" scope="col">Actor/Actriz</td>
+                            <td class="th__table" scope="col">Actor/Actriz</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,60 +101,84 @@
                             $peliculas = consultaPeliculas();
                             if (count($peliculas) > 0) {
                                 foreach ($peliculas as $pelicula) {
-                                    $actores = consultaActores($pelicula);  
-                                    
-                                    if(count($actores)>0){
-                                        foreach($actores as $actor){
-                                        echo "<tr>";
-                                        echo "<td class='th__info'>" . $pelicula->getId() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
-                                        echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
-                                        echo "<td> <img width='100px' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
-                                        echo "<td class='th__info'>" . $actor->getId() . "</td>";
-                                        echo "<td class='th__info'>" . $actor->getNombre() . "</td>";
-                                        echo "<td class='th__info'>" . $actor->getApellidos() . "</td>";
-                                        echo "<td><img width='100px' src='../assets/images/" . $actor->getFotografia() . "'/> </td>";
-                                        echo "<td>
-                                            <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                                                <i class='fa-solid fa-x eliminar'></i>
-                                            </button>
-                                            <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                                                <div class='modal-dialog'>
-                                                    <div class='modal-content'>
-                                                        <div class='modal-header'>
-                                                            <h1 class='modal-title fs-5' id='exampleModalLabel'>Eliminar Pelicula</h1>
-                                                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                                        </div>
-                                                        <div class='modal-body'>¿Esta seguro que quiere elimanar la pelicula seleccionada? Si esta seguro pulse confirmar, si no
-                                                            lo esta pulse cancelar.
-                                                        </div>
-                                                        <div class='modal-footer'>
-                                                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                                        <a href='../pages/eliminarPelicula.php?id=" . $pelicula->getId() . "' class='btn btn-primary'>Confirmar</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    echo "<tr>";
+                                    echo '<td class="th__info">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                          <i class="fa-solid fa-x eliminar__icon"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                ...
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                              </div>
                                             </div>
-                                            <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                                                        <i class='fa-solid fa-pen eliminar'></i>
-                                            </button></td>";
-                                        echo "</tr>";
+                                          </div>
+                                        </div>
+                                        
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                          <i class="fa-solid fa-pen eliminar__icon"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                ...
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+                                    </td>';
+                                    echo "<td class='th__info'>" . $pelicula->getId() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
+                                    echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
+                                    echo "<td> <img class='img__act' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
+
+                                    $actores = consultaActores($pelicula);
+                                    if (count($actores) > 0) {
+                                        foreach ($actores as $actor) {
+                                            echo "<td class='th__info'><img class='img__act' src='../assets/images/". $actor->getFotografia() ."'/><br><br>".
+                                                    $actor->getNombre() . " " . $actor->getApellidos() . "<br>ID: "
+                                                    .$actor->getId() . "</td>";
                                         }
-                                    }else{
-                                        echo "<tr>";
-                                        echo "<th scope='row' colspan='4'>No hay ningun actor</th>";
-                                        echo "</tr>";
+                                        
+                                    } else {
+                                        echo "<td class='th__info'>No hay actores</td>";
                                     }
+
+                                    echo "</tr>";
+                                    
                                 }
-                                
                             } else {
                                 echo "<tr>";
-                                echo "<th scope='row' colspan='4'>No hay ninguna pelicula</th>";
+                                echo "<th scope='row' colspan='8'>No hay ninguna película</th>";
                                 echo "</tr>";
                             }
-                        ?>
+                            ?>
 
                 </table>
                 <!-- FIN TABLA -->
