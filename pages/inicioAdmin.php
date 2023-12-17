@@ -2,9 +2,9 @@
    
     include '../pages/inicioSesion.php';
 
-    // verifica si la sesión está activa y si el usuario es administrador
+    // Verifica si la sesión está activa y si el usuario es administrador
     if (!(isset($_SESSION['user']) && $_SESSION['rol'] === 1)) {
-        // si el usuario no es administrador, cierra la sesión y redirige a la página de inicio de sesión
+        // Si el usuario no es administrador, cierra la sesión y redirige a la página de inicio de sesión
         session_unset();
         session_destroy();
         header("Location: ../index.php?error=3");
@@ -146,7 +146,7 @@
                             $peliculas = consultaPeliculas();
                             if (count($peliculas) > 0) {
                                 foreach ($peliculas as $pelicula) {
-                                    $id++; // Incrementar el índice para el ID del modal
+                                    $id++; // Incremento el id para que al pulsar en uno de los modales detecte el correcto
                                     $modalEliminarID = 'exampleModalEliminar_' . $id;
                                     $modalEditarID = 'exampleModalEditar_' . $id;
                                     echo "<tr>";
@@ -188,7 +188,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
-                                                <form class="form__section row g-3 needs-validation" method="POST" action="../pages/modificarPelicula.php">
+                                                <form class="form__section row g-3 needs-validation" method="POST" action="../pages/modificarPelicula.php?modificarPeli='.$pelicula->getId().'">
                                                     <div class="col-md-12 container__input">
                                                       <label class="form__label">Título</label>
                                                     </div>

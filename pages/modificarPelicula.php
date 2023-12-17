@@ -9,7 +9,8 @@
     //nos conectamos al base de datos atraves de la funcion
     $bd = conexionBD();
     
-    //obtemos el los datos atraves de post
+    //obtemos el los datos atraves de post y get
+    $id = htmlspecialchars($_GET['modificarPeli']);
     $nuevoTitulo = htmlspecialchars($_POST['tituloPelicula']);
     $nuevoGenero = htmlspecialchars($_POST['generoPelicula']);
     $nuevoPais = htmlspecialchars($_POST['paisPelicula']);
@@ -17,7 +18,8 @@
     $nuevoCartel = htmlspecialchars($_POST['cartelPelicula']);
     
     
+    
     //llamamos a la funcion deleteReserva y le pasamos los parametros que anteriormente hemos guardado en las variables id
-    deletePelicula($id);
+    modificarPelicula($id, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel);
 
 ?>

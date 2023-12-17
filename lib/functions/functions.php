@@ -151,8 +151,8 @@
                 
                 //Borramos la pelicula seleccionada de la tabla peliculas
                 $sqlPelicula = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ?, cartel = ? WHERE id = ?";
-                $deletePelicula = $bd->prepare($sqlPelicula);
-                $deletePelicula -> execute([$id, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel]);
+                $modificarPeli = $bd->prepare($sqlPelicula);
+                $modificarPeli -> execute([$nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel, $id]);
                 
 
                 header('Location: ../pages/inicioAdmin.php');

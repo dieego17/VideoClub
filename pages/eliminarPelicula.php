@@ -1,18 +1,18 @@
 <?php
 
-    //para incluir las funciones que haya en functions.php
+    //Incluir las funciones que haya en functions.php
     include '../lib/functions/functions.php';
     
-    //iniciamos la sesion
+    //Iniciamos la sesion
     session_start();
     
-    //nos conectamos al base de datos atraves de la funcion
+    //Nos conectamos a la base de datos a traves de la función
     $bd = conexionBD();
     
-    //obtemos el id atraves de get
+    //Obtemos el id atraves de get
     $id = htmlspecialchars($_GET['id']);
     
-    //llamamos a la funcion deleteReserva y le pasamos los parametros que anteriormente hemos guardado en las variables id
+    //Llamamos a la funcion deletePelicula y le pasamos el parametro del Id de la Película
     deletePelicula($id);
 
 ?>
