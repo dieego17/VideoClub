@@ -19,4 +19,4 @@ Este proyecto es una aplicación de un videoclub desarrollada en PHP y MySQL que
 - **HTML/CSS/Bootstrap:** Diseño y estructura de la interfaz de usuario, utilizando Bootstrap para estilos adicionales.
   
 ## Participante del proyecto
--Diego Rubio
+Diego Rubio
