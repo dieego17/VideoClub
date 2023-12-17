@@ -1,0 +1,52 @@
+@font-face {
+    font-family: fnmedium;
+    src: url(../assets/fonts/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: fnlight;
+    src: url(../assets/fonts/Poppins-Light.ttf);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #7F492D, #29ebfd)
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error__h1{
+  font-size: 5em;
+  margin-bottom: 10px;
+  color: #333;
+  font-family: fnmedium;
+}
+
+.error__P{
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: fnlight;
+}
+
+.error__a{
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #7F7A66;
+  background-color: #7F7A66;
+  font-family: fnlight;
+}
+
+.error__a:hover{
+    color: #ffffff;
+    background-color: #625e4f;
+    font-family: fnlight;
+}

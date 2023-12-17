@@ -113,12 +113,13 @@
                                 <div class="col-md-12 container__input">
                                     <input type="text" class="form__input" name="cartelPelicula" placeholder="titanic.jpg">
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Confirmar</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
      * @return \PDO
      */
     function conexionBD() {
-        $cadena_conexion = 'mysql:dbname=videoclub2;host=127.0.0.1';
+        $cadena_conexion = 'mysql:dbname=videoclub;host=127.0.0.1';
         $usuario = 'root';
         $clave = '';
 
@@ -15,12 +15,13 @@
             $bd = new PDO($cadena_conexion, $usuario, $clave);
             return $bd;
         } catch (Exception $e) {
-            return null;
+            header('Location: ../pages/page404.php');
+            exit();
         }
     }
 
     /**
-     * Función para comprobar el usuario
+     * Función para comprobar el usuario de la base de datos
      * 
      * @param type $username
      * @return type
@@ -29,11 +30,13 @@
         $bd = conexionBD();
         if ($bd != null) {
             try {
-                $sql = "select id, username, password, rol from usuarios where username='$username'";
-                $select = $bd->query($sql);
+                $sql = "select id, username, password, rol from usuarios where username= ?";
+                $select = $bd->prepare($sql);
+                $select -> execute([$username]);
+                
                 return $select;
             } catch (Exception $exc) {
-                header('Location: ../../index.php?error=2');
+                header('Location: ../../pages/page404.php');
                 exit();
             }
         }
@@ -43,7 +46,7 @@
     
 
     /**
-     * Función para mostrar cada pelicula
+     * Función para mostrar cada pelicula de la base de datos
      * 
      * @return array
      */
@@ -63,8 +66,10 @@
                     $pelicula = new Pelicula($resultado["id"], $resultado["titulo"], $resultado["genero"], $resultado["pais"], $resultado["anyo"], $resultado["cartel"]);
                     array_push($arrayPeliculas, $pelicula);
                 }
+                
             } catch (Exception $exc) {
-                // Manejo de errores
+                header('Location: ../../pages/page404.php');
+                exit(); 
             }
         } else {
             header("Location: ../index.php");
@@ -75,7 +80,7 @@
 
     
     /**
-     * Función para mostrar los actores 
+     * Función para mostrar los actores de la base de datos
      * 
      * @param type $pelicula
      * @return array
@@ -98,7 +103,8 @@
                     array_push($arrayActores, $actor);
                 }
             } catch (Exception $exc) {
-                // Manejo de errores
+                header('Location: ../../pages/page404.php');
+                exit();
             }
         } else {
             header("Location:../index.php");
@@ -111,7 +117,7 @@
 
 
     /**
-     * Función para borrar una película
+     * Función para borrar una película de la base de datos
      * 
      * @param type $id
      */
@@ -135,8 +141,8 @@
                 exit();
 
             } catch (Exception $exc) {
-                header("Location:../pages/cerrarSesion.php");
-                exit();
+                header('Location: ../../pages/page404.php');
+                exit(); 
             }
         }else {
             header("Location:../pages/cerrarSesion.php");
@@ -144,12 +150,22 @@
         }
     }
     
+    /**
+     * Función para modificar una película ya existente en la base de datos
+     * 
+     * @param type $id
+     * @param type $nuevoTitulo
+     * @param type $nuevoGenero
+     * @param type $nuevoPais
+     * @param type $nuevoAnyo
+     * @param type $nuevoCartel
+     */
     function modificarPelicula($id, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel) {
         $bd = conexionBD();
         if ($bd != null) {
             try {
                 
-                //Borramos la pelicula seleccionada de la tabla peliculas
+                //Borramos la pelicula seleccionada
                 $sqlPelicula = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ?, cartel = ? WHERE id = ?";
                 $modificarPeli = $bd->prepare($sqlPelicula);
                 $modificarPeli -> execute([$nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel, $id]);
@@ -159,8 +175,50 @@
                 exit();
 
             } catch (Exception $exc) {
-                header("Location:../pages/cerrarSesion.php");
+                header('Location: ../../pages/page404.php');
+                exit(); 
+            }
+        }else {
+            header("Location:../pages/cerrarSesion.php");
+            exit();
+        }
+    }
+    
+    
+    /**
+     * Función para añadir nuevas peliculas tomando de referencia el id mas alto y añadiendole 1 más
+     * 
+     * @param type $nuevoTitulo
+     * @param type $nuevoGenero
+     * @param type $nuevoPais
+     * @param type $nuevoAnyo
+     * @param type $nuevoCartel
+     */
+    function crearPelicula($nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel) {
+        $bd = conexionBD();
+        if ($bd != null) {
+            try {
+                
+                // Obtener el máximo ID de la tabla películas
+                $sqlMaxID = "SELECT MAX(id) AS idMax FROM peliculas";
+                $MaxID = $bd->prepare($sqlMaxID);
+                $MaxID->execute();
+                $maxIDResult = $MaxID->fetch(PDO::FETCH_ASSOC);
+                
+                $nuevoID = $maxIDResult['idMax'] + 1;
+                
+                //Insertamos la pelicula 
+                $sqlPelicula = "INSERT INTO peliculas (id, titulo, genero, pais, anyo, cartel) VALUES (?, ?, ?, ?, ?, ?)";
+                $modificarPeli = $bd->prepare($sqlPelicula);
+                $modificarPeli -> execute([$nuevoID, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel]);
+                
+
+                header('Location: ../pages/inicioAdmin.php');
                 exit();
+
+            } catch (Exception $exc) {
+                header('Location: ../../pages/page404.php');
+                exit(); 
             }
         }else {
             header("Location:../pages/cerrarSesion.php");
