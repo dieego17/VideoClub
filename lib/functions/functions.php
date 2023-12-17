@@ -6,7 +6,7 @@
      * @return \PDO
      */
     function conexionBD() {
-        $cadena_conexion = 'mysql:dbname=videoclub;host=127.0.0.1';
+        $cadena_conexion = 'mysql:dbname=videoclub2;host=127.0.0.1';
         $usuario = 'root';
         $clave = '';
 
@@ -120,9 +120,39 @@
         if ($bd != null) {
             try {
                 
-                $sql = "DELETE FROM peliculas WHERE id=?";
-                $deletePelicula = $bd->prepare($sql);
+                //Borramos en la tabla actuan el idPelicula 
+                $sqlActuan = "DELETE FROM actuan WHERE idPelicula = ?";
+                $deleteActuan = $bd->prepare($sqlActuan);
+                $deleteActuan -> execute([$id]);
+                
+                //Borramos la pelicula seleccionada de la tabla peliculas
+                $sqlPelicula = "DELETE FROM peliculas WHERE id = ?";
+                $deletePelicula = $bd->prepare($sqlPelicula);
                 $deletePelicula -> execute([$id]);
+                
+
+                header('Location: ../pages/inicioAdmin.php');
+                exit();
+
+            } catch (Exception $exc) {
+                header("Location:../pages/cerrarSesion.php");
+                exit();
+            }
+        }else {
+            header("Location:../pages/cerrarSesion.php");
+            exit();
+        }
+    }
+    
+    function modificarPelicula($id, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel) {
+        $bd = conexionBD();
+        if ($bd != null) {
+            try {
+                
+                //Borramos la pelicula seleccionada de la tabla peliculas
+                $sqlPelicula = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ?, cartel = ? WHERE id = ?";
+                $deletePelicula = $bd->prepare($sqlPelicula);
+                $deletePelicula -> execute([$id, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel]);
                 
 
                 header('Location: ../pages/inicioAdmin.php');

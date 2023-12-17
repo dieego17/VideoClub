@@ -131,7 +131,6 @@
                     <thead>
                         <tr>
                             <td class="th__table" scope="col">Acciones</td>
-                            <td class="th__table" scope="col">Id Película</td>
                             <td class="th__table" scope="col">Título</td>
                             <td class="th__table" scope="col">Género</td>
                             <td class="th__table" scope="col">País</td>
@@ -143,17 +142,21 @@
                     </thead>
                     <tbody>
                         <?php
+                        $id = 0;
                             $peliculas = consultaPeliculas();
                             if (count($peliculas) > 0) {
                                 foreach ($peliculas as $pelicula) {
+                                    $id++; // Incrementar el índice para el ID del modal
+                                    $modalEliminarID = 'exampleModalEliminar_' . $id;
+                                    $modalEditarID = 'exampleModalEditar_' . $id;
                                     echo "<tr>";
                                     echo '<td class="th__info">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalEliminar">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#'.$modalEliminarID.'">
                                           <i class="fa-solid fa-x eliminar__icon"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabelEliminar" aria-hidden="true">
+                                        <div class="modal fade" id="'.$modalEliminarID.'" tabindex="-1" aria-labelledby="exampleModalLabelEliminar" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
                                               <div class="modal-header">
@@ -161,7 +164,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
-                                                ¿Esta seguro que quiere elimanar la película seleccionada? Si esta seguro pulse confirmar, si no, 
+                                                ¿Esta seguro que quiere elimanar '.$pelicula->getTitulo().' seleccionada? Si esta seguro pulse confirmar, si no, 
                                                 pulse cancelar.
                                               </div>
                                               <div class="modal-footer">
@@ -172,16 +175,16 @@
                                           </div>
                                         </div>
                                         
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModalEditar">
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#'.$modalEditarID.'">
                                           <i class="fa-solid fa-pen eliminar__icon"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalEditar" tabindex="-1" aria-labelledby="exampleModalEditar" aria-hidden="true">
+                                        <div class="modal fade" id="'.$modalEditarID.'" tabindex="-1" aria-labelledby="exampleModalEditar" aria-hidden="true">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
                                               <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel1">Modificar Película</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel1">Modificar Película: '.$pelicula->getTitulo().'</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
@@ -226,7 +229,6 @@
                                           </div>
                                         </div>
                                     </td>';
-                                    echo "<td class='th__info'>" . $pelicula->getId() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getTitulo() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
@@ -237,8 +239,7 @@
                                     if (count($actores) > 0) {
                                         foreach ($actores as $actor) {
                                             echo "<td class='th__info'><img class='img__act' src='../assets/images/". $actor->getFotografia() ."'/><br><br>".
-                                                    $actor->getNombre() . " " . $actor->getApellidos() . "<br>ID: "
-                                                    .$actor->getId() . "</td>";
+                                                    $actor->getNombre() . " " . $actor->getApellidos() . "</td>";
                                         }
                                         
                                     } else {

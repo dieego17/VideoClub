@@ -12,7 +12,6 @@
     //obtemos el id atraves de get
     $id = htmlspecialchars($_GET['id']);
     
-    
     //llamamos a la funcion deleteReserva y le pasamos los parametros que anteriormente hemos guardado en las variables id
     deletePelicula($id);
 
