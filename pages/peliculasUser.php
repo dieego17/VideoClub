@@ -129,6 +129,21 @@
                 <!-- FIN TABLA -->
             </div>
             <!-- FIN SECTION -->
+            <!-- ACTORES PARO -->
+            <h2 class="principal__title">Actores en Paro</h2>
+            <div class="container__paro">
+                <?php
+                    $actoresParo = consultaActoresParo();
+                    if (count($actoresParo) > 0) {
+                        foreach ($actoresParo as $actor){
+                            echo "<div class='actores__img'>";
+                                echo "<img class='img__act' src='../assets/images/".$actor->getFotografia() ."'/><br>";
+                                echo $actor->getNombre()." ".$actor->getApellidos()."<br>";
+                            echo "</div>";
+                        }
+                    }
+                ?>
+            </div>
         </div>
     </body>
     <!-- FIN BODY -->

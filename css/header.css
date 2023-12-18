@@ -139,6 +139,7 @@
 
 .principal__title{
     color: #7F7A66;
+    font-family: fnmedium;
 }
 .th__table{
     font-size: 1.1rem;
@@ -162,4 +163,18 @@
     font-family: fnlight;
     color: #7F7A66;
 }
-
+.btn__icon, .btn-success{
+    font-family: fnlight;
+}
+.container__paro{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0px;
+}
+.actores__img{
+    padding: 0px 40px;
+    font-family: fnlight;
+    color: #7F7A66;
+}

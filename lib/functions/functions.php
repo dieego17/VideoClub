@@ -6,7 +6,7 @@
      * @return \PDO
      */
     function conexionBD() {
-        $cadena_conexion = 'mysql:dbname=videoclub;host=127.0.0.1';
+        $cadena_conexion = 'mysql:dbname=videoclub2;host=127.0.0.1';
         $usuario = 'root';
         $clave = '';
 
@@ -114,6 +114,38 @@
         return $arrayActores;
     }
 
+    /**
+     * Función para mostrar los actores en paro
+     * 
+     * @return array
+     */
+    function consultaActoresParo() {
+        $bd = conexionBD();
+        $arrayActoresParo = array();
+
+        if ($bd != null) {
+            try {
+                $prepares = $bd->prepare("SELECT * FROM actores where id NOT IN (SELECT idActor FROM actuan);");
+                $prepares->execute();
+
+                // Obtener los resultados como un array asociativo
+                $resultados = $prepares->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($resultados as $resultado) {
+                    $actor = new Actor($resultado["id"], $resultado["nombre"], $resultado["apellidos"], $resultado["fotografia"]);
+                    array_push($arrayActoresParo, $actor);
+                }
+            } catch (Exception $exc) {
+                header('Location: ../../pages/page404.php');
+                exit();
+            }
+        } else {
+            header("Location:../index.php");
+            exit();
+        }
+
+        return $arrayActoresParo;
+    }
 
 
     /**

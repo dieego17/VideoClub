@@ -28,3 +28,27 @@
     justify-content: center;
     margin: 20px 0px;
 }
+.modal-title{
+    font-family: fnmedium;
+    color: #7F7A66;
+}
+.container__input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form__label{
+    font-size: 1.2rem;
+    color: #7F7A66;
+    font-family: fnmedium;
+}
+.form__input{
+    border: none;
+    font-family: fnlight;
+    padding: 2px 10px;
+    font-size: 1rem;
+    border: 1px solid #7F7A66;
+    border-radius: 5px;
+    outline: none;
+}
