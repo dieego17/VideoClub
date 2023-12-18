@@ -13,11 +13,10 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #7F492D, #29ebfd)
 }
 
-.error-container {
+.container {
   text-align: center;
 }
 
@@ -28,7 +27,7 @@ body {
   font-family: fnmedium;
 }
 
-.error__P{
+.error__p{
   font-size: 1.5em;
   color: #333;
   margin-bottom: 20px;

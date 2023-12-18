@@ -61,9 +61,9 @@
                 <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
                 <?php
                     if(isset($_COOKIE['ultimaVez'])){
-                        echo "Tu última visita fue ".$_COOKIE['ultimaVez'];
+                        echo "<p class='text__fecha'>Tu última visita fue ".$_COOKIE['ultimaVez']."</p>";
                     }else{
-                        echo "Esta es tu primera visita";
+                        echo "<p class='text__fecha'>Esta es tu primera visita</p>";
                     }
                 ?>
             </div>
@@ -165,7 +165,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
-                                                ¿Esta seguro que quiere elimanar '.$pelicula->getTitulo().' seleccionada? Si esta seguro pulse confirmar, si no, 
+                                                ¿Esta seguro que quiere elimanar '.$pelicula->getTitulo().'? Si esta seguro pulse confirmar, si no, 
                                                 pulse cancelar.
                                               </div>
                                               <div class="modal-footer">

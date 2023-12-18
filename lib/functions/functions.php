@@ -30,7 +30,7 @@
         $bd = conexionBD();
         if ($bd != null) {
             try {
-                $sql = "select id, username, password, rol from usuarios where username= ?";
+                $sql = "select id, username, password, rol from usuarios where username = ?";
                 $select = $bd->prepare($sql);
                 $select -> execute([$username]);
                 
@@ -92,7 +92,7 @@
         if ($bd != null) {
             try {
                 $idPelicula = $pelicula->getId();
-                $prepares = $bd->prepare("SELECT * FROM actores where id IN (SELECT idActor FROM actuan WHERE idPelicula=?);");
+                $prepares = $bd->prepare("SELECT * FROM actores where id IN (SELECT idActor FROM actuan WHERE idPelicula = ?);");
                 $prepares->execute(array($idPelicula));
 
                 // Obtener los resultados como un array asociativo
@@ -165,7 +165,7 @@
         if ($bd != null) {
             try {
                 
-                //Borramos la pelicula seleccionada
+                //Modificamos la pelicula seleccionada 
                 $sqlPelicula = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ?, cartel = ? WHERE id = ?";
                 $modificarPeli = $bd->prepare($sqlPelicula);
                 $modificarPeli -> execute([$nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel, $id]);
@@ -200,14 +200,14 @@
             try {
                 
                 // Obtener el máximo ID de la tabla películas
-                $sqlMaxID = "SELECT MAX(id) AS idMax FROM peliculas";
+                $sqlMaxID = "SELECT MAX(id) 'idMax' FROM peliculas";
                 $MaxID = $bd->prepare($sqlMaxID);
                 $MaxID->execute();
                 $maxIDResult = $MaxID->fetch(PDO::FETCH_ASSOC);
                 
                 $nuevoID = $maxIDResult['idMax'] + 1;
                 
-                //Insertamos la pelicula 
+                //Insertamos la nueva pelicula 
                 $sqlPelicula = "INSERT INTO peliculas (id, titulo, genero, pais, anyo, cartel) VALUES (?, ?, ?, ?, ?, ?)";
                 $modificarPeli = $bd->prepare($sqlPelicula);
                 $modificarPeli -> execute([$nuevoID, $nuevoTitulo, $nuevoGenero, $nuevoPais, $nuevoAnyo, $nuevoCartel]);

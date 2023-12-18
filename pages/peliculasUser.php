@@ -72,9 +72,9 @@
                 <h1 class="principal__title">Bienvenido/a <?php echo ucfirst($name) ?></h1>
                 <?php
                     if(isset($_COOKIE['ultimaVez'])){
-                        echo "Tu última visita fue ".$_COOKIE['ultimaVez'];
+                        echo "<p class='text__fecha'>Tu última visita fue ".$_COOKIE['ultimaVez']."</p>";
                     }else{
-                        echo "Esta es tu primera visita";
+                        echo "<p class='text__fecha'>Esta es tu primera visita</p>";
                     }
                 ?>
             </div>
