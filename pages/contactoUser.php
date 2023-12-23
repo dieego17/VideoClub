@@ -81,11 +81,11 @@
             </div>
             <form class="row g-3 needs-validation form__contact" action="../pages/envioCorreo.php" method="POST">
                 <div class="col-md-12">
-                  <label for="validationCustom01" class="form-label">Asunto</label>
+                  <label class="form-label">Asunto</label>
                   <input type="text" name="asunto" class="form-control" id="validationCustom01" placeholder="Asunto">
                 </div>
                 <div class="col-md-12">
-                  <label for="validationCustom05" class="form-label">Incidencia</label>
+                  <label class="form-label">Incidencia</label>
                   <textarea class="form-control" id="id" name="mensaje" rows="5" cols="10" placeholder="Mensaje"></textarea>
                 </div>
                 <?php
@@ -95,6 +95,8 @@
                         // Verifica el valor de $error y muestra el mensaje correspondiente
                         if ($error == 1) {
                             echo "<p class='register__error'>Error: complete todos los campos<p>";
+                        }elseif($error == 2){
+                            echo "<p class='register__true btn-success'>Correo Enviado<p>";
                         }
                     }
                 ?>

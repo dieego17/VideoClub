@@ -30,7 +30,6 @@
     justify-content: space-between !important;
     align-items: center !important;
     text-align: center !important;
-    background-color: none;
 }
 /* DIV DE LA IMAGÉN Y EL TEXTO */
 .header__img{
@@ -168,13 +167,14 @@
 }
 .container__paro{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     text-align: center;
     margin: 20px 0px;
 }
 .actores__img{
-    padding: 0px 40px;
+    padding: 10px 40px;
     font-family: fnlight;
     color: #7F7A66;
 }

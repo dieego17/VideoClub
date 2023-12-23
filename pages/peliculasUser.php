@@ -84,12 +84,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td class="th__table" scope="col">Título</td>
-                            <td class="th__table" scope="col">Género</td>
-                            <td class="th__table" scope="col">País</td>
-                            <td class="th__table" scope="col">Año</td>
-                            <td class="th__table" scope="col">Cartel</td>
-                            <td class="th__table th__table--foto" scope="col">Reparto</td>
+                            <td class="th__table">Título</td>
+                            <td class="th__table">Género</td>
+                            <td class="th__table">País</td>
+                            <td class="th__table">Año</td>
+                            <td class="th__table">Cartel</td>
+                            <td class="th__table th__table--foto">Reparto</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,12 +102,12 @@
                                     echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
-                                    echo "<td> <img class='img__act' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
+                                    echo "<td> <img class='img__act' alt='' src='../assets/images/" . $pelicula->getCartel() . "'> </td>";
 
                                     $actores = consultaActores($pelicula);
                                     if (count($actores) > 0) {
                                         foreach ($actores as $actor) {
-                                            echo "<td class='th__info'><img class='img__act' src='../assets/images/". $actor->getFotografia() ."'/><br><br>".
+                                            echo "<td class='th__info'><img class='img__act' alt='' src='../assets/images/". $actor->getFotografia() ."'><br><br>".
                                                     $actor->getNombre() . " " . $actor->getApellidos() . "</td>";
                                         }
                                         
@@ -137,7 +137,7 @@
                     if (count($actoresParo) > 0) {
                         foreach ($actoresParo as $actor){
                             echo "<div class='actores__img'>";
-                                echo "<img class='img__act' src='../assets/images/".$actor->getFotografia() ."'/><br>";
+                                echo "<img class='img__act' alt='' src='../assets/images/".$actor->getFotografia() ."'><br>";
                                 echo $actor->getNombre()." ".$actor->getApellidos()."<br>";
                             echo "</div>";
                         }

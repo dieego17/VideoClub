@@ -29,7 +29,7 @@
         $mail->Body= $mensaje;
         $mail->send();
         
-        echo "<script>alert('Correo Enviado');document.location.href= '../pages/contactoUser.php';</script>";
+        header("Location: ../pages/contactoUser.php?error=2");
         
     }else{
         header("Location: ../pages/contactoUser.php?error=1");

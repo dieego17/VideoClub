@@ -31,10 +31,10 @@
         <!-- CONTAINER -->
         <div class="container">
             <main class="main">
-                <section class="row section__form">
-                    <article class="article__form">
+                <div class="row section__form">
+                    <div class="article__form">
                         <img class="img__log" src="./assets/images/logo.jpeg" alt="">
-                    </article>
+                    </div>
                     <!-- INICIO FORM -->
                     <form class="form__section row g-3 needs-validation" method="POST" action="./pages/inicioSesion.php">
                         <div class="col-md-12 container__input">
@@ -64,7 +64,7 @@
                         </div>
                     </form>
                     <!-- FIN FORM -->
-                </section>
+                </div>
             </main>
         </div>
     </body>

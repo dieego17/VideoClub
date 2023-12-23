@@ -74,11 +74,11 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalAñadir" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal fade" id="exampleModalAñadir" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel1">Añadir Nueva Pelicula</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel14">Añadir Nueva Pelicula</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -129,13 +129,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td class="th__table" scope="col">Acciones</td>
-                            <td class="th__table" scope="col">Título</td>
-                            <td class="th__table" scope="col">Género</td>
-                            <td class="th__table" scope="col">País</td>
-                            <td class="th__table" scope="col">Año</td>
-                            <td class="th__table" scope="col">Cartel</td>
-                            <td class="th__table" scope="col">Reparto</td>
+                            <td class="th__table">Acciones</td>
+                            <td class="th__table">Título</td>
+                            <td class="th__table">Género</td>
+                            <td class="th__table">País</td>
+                            <td class="th__table">Año</td>
+                            <td class="th__table">Cartel</td>
+                            <td class="th__table">Reparto</td>
 
                         </tr>
                     </thead>
@@ -148,6 +148,10 @@
                                     $id++; // Incremento el id para que al pulsar en uno de los modales detecte el correcto
                                     $modalEliminarID = 'exampleModalEliminar_' . $id;
                                     $modalEditarID = 'exampleModalEditar_' . $id;
+                                    
+                                    $exampleModalLabelEliID = 'exampleModalLabelEliminar_' . $id;
+                                    $exampleModalLabelEdiID = 'exampleModalLabelEditar_' . $id;
+                                    
                                     echo "<tr>";
                                     echo '<td class="th__info">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#'.$modalEliminarID.'">
@@ -155,11 +159,11 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="'.$modalEliminarID.'" tabindex="-1" aria-labelledby="exampleModalLabelEliminar" aria-hidden="true">
+                                        <div class="modal fade" id="'.$modalEliminarID.'" tabindex="-1">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
                                               <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Película</h1>
+                                                <h1 class="modal-title fs-5" id="'.$exampleModalLabelEliID.'">Eliminar Película</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
@@ -179,11 +183,11 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="'.$modalEditarID.'" tabindex="-1" aria-labelledby="exampleModalEditar" aria-hidden="true">
+                                        <div class="modal fade" id="'.$modalEditarID.'" tabindex="-1">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
                                               <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel1">Modificar Película: '.$pelicula->getTitulo().'</h1>
+                                                <h1 class="modal-title fs-5" id="'.$exampleModalLabelEdiID.'">Modificar Película: '.$pelicula->getTitulo().'</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
@@ -232,12 +236,12 @@
                                     echo "<td class='th__info'>" . $pelicula->getGenero() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getPais() . "</td>";
                                     echo "<td class='th__info'>" . $pelicula->getAnyo() . "</td>";
-                                    echo "<td> <img class='img__act' src='../assets/images/" . $pelicula->getCartel() . "'/> </td>";
+                                    echo "<td> <img class='img__act' alt='' src='../assets/images/" . $pelicula->getCartel() . "'> </td>";
 
                                     $actores = consultaActores($pelicula);
                                     if (count($actores) > 0) {
                                         foreach ($actores as $actor) {
-                                            echo "<td class='th__info'><img class='img__act' src='../assets/images/". $actor->getFotografia() ."'/><br><br>".
+                                            echo "<td class='th__info'><img class='img__act' alt='' src='../assets/images/". $actor->getFotografia() ."'><br><br>".
                                                     $actor->getNombre() . " " . $actor->getApellidos() . "</td>";
                                         }
                                         
@@ -266,7 +270,7 @@
                     if (count($actoresParo) > 0) {
                         foreach ($actoresParo as $actor){
                             echo "<div class='actores__img'>";
-                                echo "<img class='img__act' src='../assets/images/".$actor->getFotografia() ."'/><br>";
+                                echo "<img class='img__act' alt='' src='../assets/images/".$actor->getFotografia() ."'><br>";
                                 echo $actor->getNombre()." ".$actor->getApellidos()."<br>";
                             echo "</div>";
                         }

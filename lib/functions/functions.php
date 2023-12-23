@@ -6,7 +6,7 @@
      * @return \PDO
      */
     function conexionBD() {
-        $cadena_conexion = 'mysql:dbname=videoclub2;host=127.0.0.1';
+        $cadena_conexion = 'mysql:dbname=videoclub;host=127.0.0.1';
         $usuario = 'root';
         $clave = '';
 
@@ -42,8 +42,6 @@
         }
     }
 
-
-    
 
     /**
      * Función para mostrar cada pelicula de la base de datos
