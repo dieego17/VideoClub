@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h1 class="error__h1">Error 404</h1>
-    <p class="error__p">Lo sentimos, la página que buscas no se encuentra.</p>
+    <p class="error__p">Lo sentimos, la página no se encuentra. Intentelo de nuevo más tarde.</p>
     <a class="error__a" href="../index.php">Volver a la página principal</a>
   </div>
 </body>
